@@ -5,6 +5,8 @@
  */
 package contactomaestro;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author isifi
@@ -14,8 +16,15 @@ public class NuevoMensaje extends javax.swing.JFrame {
     /**
      * Creates new form NuevoMensaje
      */
+    Principal p;
+    
     public NuevoMensaje() {
         initComponents();
+    }
+    
+    public NuevoMensaje(Principal p){
+        initComponents();
+        this.p = p;
     }
 
     /**
@@ -29,18 +38,52 @@ public class NuevoMensaje extends javax.swing.JFrame {
 
         lblDestinatario = new javax.swing.JLabel();
         txtFieldDestinatario = new javax.swing.JTextField();
+        lblAsunto = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaMensaje = new javax.swing.JTextArea();
+        btnEnviarSMS = new javax.swing.JButton();
+        btnSalirSMS = new javax.swing.JButton();
 
         lblDestinatario.setText("Destinatario:");
+
+        lblAsunto.setText("Mensaje:");
+
+        txtAreaMensaje.setColumns(20);
+        txtAreaMensaje.setRows(5);
+        txtAreaMensaje.setText("\n");
+        jScrollPane1.setViewportView(txtAreaMensaje);
+
+        btnEnviarSMS.setText("Enviar");
+        btnEnviarSMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarSMSActionPerformed(evt);
+            }
+        });
+
+        btnSalirSMS.setText("Salir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(txtFieldDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(lblAsunto))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalirSMS)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEnviarSMS))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(txtFieldDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -50,11 +93,30 @@ public class NuevoMensaje extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFieldDestinatario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAsunto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnviarSMS)
+                    .addComponent(btnSalirSMS))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEnviarSMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarSMSActionPerformed
+        String destinatario = txtFieldDestinatario.getText();
+        String mensaje = txtAreaMensaje.getText();
+        mensajesms sms = new mensajesms(destinatario,mensaje);
+        p.listaSMS.addElement(sms);
+        JOptionPane.showMessageDialog(rootPane, "Mensaje enviado", "Correcto", JOptionPane.PLAIN_MESSAGE);
+        this.setVisible(false);
+        //p.mensajesenviados.
+
+    }//GEN-LAST:event_btnEnviarSMSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -92,7 +154,12 @@ public class NuevoMensaje extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnviarSMS;
+    private javax.swing.JButton btnSalirSMS;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAsunto;
     private javax.swing.JLabel lblDestinatario;
+    private javax.swing.JTextArea txtAreaMensaje;
     javax.swing.JTextField txtFieldDestinatario;
     // End of variables declaration//GEN-END:variables
 }

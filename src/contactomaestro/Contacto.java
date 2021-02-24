@@ -11,34 +11,39 @@ package contactomaestro;
  */
 public class Contacto {
 
-    public String nombre, apellidos, email, movil, fijo;
+    public String nombre, apellidos, email, movil, fijo,prefijo1,prefijo2;
     public String bloqueado = " ";
+    public String favorito = " ";
 
     public Contacto() {
 
     }
 
-    public Contacto(String nombre,String prefijo1, String movil,String bloqueado) {
-        this.nombre = nombre;
-        this.movil = prefijo1+movil;
-        this.bloqueado = bloqueado;
 
-    }
-
-    public Contacto(String nombre, String apellidos, String email,String prefijo1, String movil, String prefijo2, String fijo,String bloqueado) {
+    public Contacto(String nombre, String apellidos, String email,String prefijo1, String movil, String prefijo2, String fijo,String bloqueado,String favorito) {
         this.setNombre(nombre);
         this.apellidos = apellidos;
         this.email = email;
-        this.movil = prefijo1+movil;
-        this.fijo = prefijo2+fijo;
+        this.movil = movil;
+        this.fijo = fijo;
+        this.prefijo1 = prefijo1;
+        this.prefijo2 = prefijo2;
         this.bloqueado = bloqueado;
+        this.favorito = favorito;
     }
     
-    public Contacto(Contacto persona){
-        this.nombre = persona.nombre;
-        this.movil = persona.movil;
-        this.bloqueado = persona.bloqueado;
+        public Contacto(Contacto copiara) {
+        this.nombre = copiara.nombre;
+        this.apellidos = copiara.apellidos;
+        this.email = copiara.email;
+        this.movil = copiara.movil;
+        this.fijo = copiara.fijo;
+        this.prefijo1 = copiara.prefijo1;
+        this.prefijo2 = copiara.prefijo2;
+        this.bloqueado = copiara.bloqueado;
+        this.favorito = copiara.favorito;
     }
+    
 
     public void setNombre(String n) {
         this.nombre = n;
@@ -46,6 +51,15 @@ public class Contacto {
 
     public String getNombre() {
         return this.nombre;
+    }
+    
+    
+        public void setFavorito(String n) {
+        this.favorito = n;
+    }
+
+    public String getFavorito() {
+        return this.favorito;
     }
     
     public void setBloqueado(String n) {
@@ -72,16 +86,16 @@ public class Contacto {
         return this.email;
     }
 
-    public void setMovil(String prefijo, String n) {
-        this.movil = prefijo + n;
+    public void setMovil(String n) {
+        this.movil = n;
     }
 
     public String getMovil() {
         return this.movil;
     }
 
-    public void setFijo(String prefijo, String n) {
-        this.fijo = prefijo + n;
+    public void setFijo(String n) {
+        this.fijo = n;
     }
 
     public String getFijo() {
@@ -91,7 +105,7 @@ public class Contacto {
     
     @Override
     public String toString() {
-        return nombre+" "+movil+" "+bloqueado;
+        return nombre+" "+apellidos+" "+movil+" "+fijo+"  "+email;
     }
 
 }

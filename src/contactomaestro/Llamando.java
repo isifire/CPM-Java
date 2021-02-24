@@ -71,6 +71,7 @@ public class Llamando extends javax.swing.JFrame {
         btnColgar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Llamada");
 
         lblEstadoLlamada.setText("Llamando...");
 
