@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package contactomaestro;
 
 import javax.swing.JOptionPane;
@@ -10,6 +5,7 @@ import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -20,24 +16,23 @@ public class Principal extends javax.swing.JFrame {
 
     boolean bloqueo = false;
     Llamando ventanallamar;
+    EditarContacto editar = new EditarContacto(this);
     BandejaSalida mensajesenviados = new BandejaSalida(this);
     NuevoMensaje sms = new NuevoMensaje(this);
+
     public DefaultListModel listaContactosObjeto = new DefaultListModel();
     public DefaultListModel listaFavoritosObjeto = new DefaultListModel();
     public DefaultListModel listaContactosBloqueados = new DefaultListModel();
     public DefaultListModel listaSMS = new DefaultListModel();
+    
     public Principal() {
         initComponents();
-        
+
         listContactos.setModel(listaContactosObjeto);
         listBloqueado.setModel(listaContactosBloqueados);
         mensajesenviados.listSMS.setModel(listaSMS);
         listFavoritos.setModel(listaFavoritosObjeto);
-        //listBloqueado.setModel(new javax.swing.DefaultListModel());
     }
-
-    //javax.swing.JList<Object> listDatos = new javax.swing.JList<>();
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,16 +41,6 @@ public class Principal extends javax.swing.JFrame {
         btnGrupoMolestarSonido = new javax.swing.ButtonGroup();
         btnGrupoMolestarPanel = new javax.swing.ButtonGroup();
         tabPestanas = new javax.swing.JTabbedPane();
-        panelContactos = new javax.swing.JPanel();
-        btnLlamar = new javax.swing.JButton();
-        btnSms = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listContactos = new javax.swing.JList<>();
-        btnBorrar = new javax.swing.JButton();
-        btnFav = new javax.swing.JButton();
-        btnBloquear = new javax.swing.JButton();
-        lblCosas = new javax.swing.JLabel();
         tabBandeja = new javax.swing.JPanel();
         rbMolestarPanel = new javax.swing.JRadioButton();
         rbSonidoPanel = new javax.swing.JRadioButton();
@@ -88,6 +73,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtFieldCorreo = new javax.swing.JTextField();
         btnAnadirContacto = new javax.swing.JButton();
+        panelContactos = new javax.swing.JPanel();
+        btnLlamar = new javax.swing.JButton();
+        btnSms = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listContactos = new javax.swing.JList<>();
+        btnBorrar = new javax.swing.JButton();
+        btnFav = new javax.swing.JButton();
+        btnBloquear = new javax.swing.JButton();
+        lblCosas = new javax.swing.JLabel();
         lblEasterEgg = new javax.swing.JLabel();
         lblLogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -102,98 +97,6 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ContactoMaestro");
-
-        btnLlamar.setText("Llamar");
-        btnLlamar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLlamarActionPerformed(evt);
-            }
-        });
-
-        btnSms.setText("SMS");
-        btnSms.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSmsActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Editar");
-
-        listContactos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = {};
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(listContactos);
-
-        btnBorrar.setText("Borrar");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-
-        btnFav.setText("Añadir a favoritos");
-        btnFav.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFavActionPerformed(evt);
-            }
-        });
-
-        btnBloquear.setText("Bloquear");
-        btnBloquear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBloquearActionPerformed(evt);
-            }
-        });
-
-        lblCosas.setText("Nombre    Apellidos       Tfno Movil            Tfno Fijo      Correo Electronico        Bloqueado");
-
-        javax.swing.GroupLayout panelContactosLayout = new javax.swing.GroupLayout(panelContactos);
-        panelContactos.setLayout(panelContactosLayout);
-        panelContactosLayout.setHorizontalGroup(
-            panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelContactosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCosas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelContactosLayout.createSequentialGroup()
-                        .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnSms, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnFav, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
-                .addContainerGap())
-            .addComponent(jScrollPane2)
-        );
-        panelContactosLayout.setVerticalGroup(
-            panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelContactosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCosas)
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLlamar)
-                    .addComponent(jButton1)
-                    .addComponent(btnSms))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar)
-                    .addComponent(btnFav)
-                    .addComponent(btnBloquear))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-
-        tabPestanas.addTab("Contactos", panelContactos);
 
         btnGrupoMolestarPanel.add(rbMolestarPanel);
         rbMolestarPanel.setText("No molestar");
@@ -498,6 +401,104 @@ public class Principal extends javax.swing.JFrame {
 
         tabPestanas.addTab("Añadir Contacto", panelAñadirContactos);
 
+        btnLlamar.setText("Llamar");
+        btnLlamar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLlamarActionPerformed(evt);
+            }
+        });
+
+        btnSms.setText("SMS");
+        btnSms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSmsActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        listContactos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = {};
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(listContactos);
+
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnFav.setText("Añadir a favoritos");
+        btnFav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFavActionPerformed(evt);
+            }
+        });
+
+        btnBloquear.setText("Bloquear");
+        btnBloquear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBloquearActionPerformed(evt);
+            }
+        });
+
+        lblCosas.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
+        lblCosas.setText("Lista de Contactos");
+
+        javax.swing.GroupLayout panelContactosLayout = new javax.swing.GroupLayout(panelContactos);
+        panelContactos.setLayout(panelContactosLayout);
+        panelContactosLayout.setHorizontalGroup(
+            panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
+            .addGroup(panelContactosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBloquear, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFav, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContactosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCosas)
+                .addGap(144, 144, 144))
+        );
+        panelContactosLayout.setVerticalGroup(
+            panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelContactosLayout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(lblCosas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLlamar)
+                    .addComponent(jButton1)
+                    .addComponent(btnSms))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBorrar)
+                    .addComponent(btnFav)
+                    .addComponent(btnBloquear))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+
+        tabPestanas.addTab("Contactos", panelContactos);
+
         lblEasterEgg.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEasterEggMouseClicked(evt);
@@ -613,12 +614,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtFieldFijoKeyTyped
 
     private void btnAnadirContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirContactoActionPerformed
-        
+
         String texto = txtFieldNombre.getText() + " " + txtFieldApellidos.getText() + "  " + cBoxPrefijoMovil.getSelectedItem() + txtFieldTfno.getText() + "  " + cBoxPrefijoFijo.getSelectedItem() + txtFieldFijo.getText() + "  " + txtFieldCorreo.getText() + " ";
         if (!texto.contains("BLOQUEADO") && !texto.contains("bloqueado")) {
-            if(!txtFieldNombre.getText().isEmpty() && !txtFieldTfno.getText().isEmpty() && !txtFieldFijo.getText().isEmpty() && !txtFieldCorreo.getText().isEmpty() && !txtFieldApellidos.getText().isEmpty()){
-                
-                String nombre,apellidos,prefijo1,tfno,prefijo2,fijo,mail;
+            if (!txtFieldNombre.getText().isEmpty() && !txtFieldTfno.getText().isEmpty() && !txtFieldFijo.getText().isEmpty() && !txtFieldCorreo.getText().isEmpty() && !txtFieldApellidos.getText().isEmpty()) {
+
+                String nombre, apellidos, prefijo1, tfno, prefijo2, fijo, mail;
                 nombre = txtFieldNombre.getText();
                 apellidos = txtFieldApellidos.getText();
                 prefijo1 = cBoxPrefijoMovil.getSelectedItem().toString();
@@ -626,13 +627,11 @@ public class Principal extends javax.swing.JFrame {
                 tfno = txtFieldTfno.getText();
                 fijo = txtFieldFijo.getText();
                 mail = txtFieldCorreo.getText();
-                
-                Contacto persona = new Contacto(nombre,apellidos,mail,prefijo1,tfno,prefijo2,fijo,"NO","NO");
+
+                Contacto persona = new Contacto(nombre, apellidos, mail, prefijo1, tfno, prefijo2, fijo, "NO", "NO");
                 listaContactosObjeto.addElement(persona);
-                
-                
-            }
-            else{
+
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Error, se requieren todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         } else {
@@ -650,17 +649,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnFavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFavActionPerformed
-                    int index= listContactos.getSelectedIndex();
-                    Contacto persona=(Contacto)listaContactosObjeto.getElementAt(index);
+        int index = listContactos.getSelectedIndex();
+        Contacto persona = (Contacto) listaContactosObjeto.getElementAt(index);
         if (persona.getBloqueado() == "SI") {
             JOptionPane.showMessageDialog(rootPane, "Error, tu contacto esta bloqueado, debes desbloquearlo para poder añadirle a favoritos", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            if(persona.getFavorito() == "NO"){
+            if (persona.getFavorito() == "NO") {
                 persona.setFavorito("SI");
                 listaFavoritosObjeto.addElement(persona);
-                
+
             }
-            
+
         }
 
 
@@ -672,35 +671,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarFavActionPerformed
 
     private void btnBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBloquearActionPerformed
-
-        
-               if(!listContactos.isSelectionEmpty()){
-                    int index= listContactos.getSelectedIndex();
-                    Contacto persona=(Contacto)listaContactosObjeto.getElementAt(index);
-                    Contacto personacopia = new Contacto(persona);
-                    if(persona.getBloqueado() == "SI"){
-                    personacopia.setBloqueado("NO");
-                    listaContactosObjeto.addElement(personacopia);
-                    listaContactosBloqueados.removeElement(persona);
-                    listaContactosObjeto.removeElement(persona);     
-                    }
-                    else{
-                    personacopia.setBloqueado("SI");
-                    listaContactosObjeto.addElement(personacopia);
-                    listaContactosBloqueados.addElement(personacopia);
-                    listaContactosObjeto.removeElement(persona);    
-                    }
+        if (!listContactos.isSelectionEmpty()) {
+            int index = listContactos.getSelectedIndex();
+            Contacto persona = (Contacto) listaContactosObjeto.getElementAt(index);
+            Contacto personacopia = new Contacto(persona);
+            if (persona.getBloqueado() == "SI") {
+                personacopia.setBloqueado("NO");
+                listaContactosObjeto.addElement(personacopia);
+                listaContactosBloqueados.removeElement(persona);
+                listaContactosObjeto.removeElement(persona);
+            } else {
+                personacopia.setBloqueado("SI");
+                listaContactosObjeto.addElement(personacopia);
+                listaContactosBloqueados.addElement(personacopia);
+                listaContactosObjeto.removeElement(persona);
+            }
         }
     }//GEN-LAST:event_btnBloquearActionPerformed
 
     private void btnLlamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLlamarActionPerformed
-        int index= listContactos.getSelectedIndex();
-        Contacto persona=(Contacto)listaContactosObjeto.getElementAt(index);
+        int index = listContactos.getSelectedIndex();
+        Contacto persona = (Contacto) listaContactosObjeto.getElementAt(index);
         if (listContactos.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "No has seleccionado ningún contacto", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             if (persona.getBloqueado() == "SI") {
-                JOptionPane.showMessageDialog(rootPane, "Error, tu contacto "+persona.nombre+ " esta bloqueado, debes desbloquearlo para poder llamarle", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Error, tu contacto " + persona.nombre + " esta bloqueado, debes desbloquearlo para poder llamarle", "ERROR", JOptionPane.ERROR_MESSAGE);
             } else {
                 int respuesta = JOptionPane.showConfirmDialog(rootPane, "¿Deseas realizar la llamada?", "Llamar", JOptionPane.YES_NO_OPTION);
                 if (respuesta == JOptionPane.YES_OPTION) {
@@ -721,9 +717,9 @@ public class Principal extends javax.swing.JFrame {
         fichero.setFileFilter(filter);
         fichero.setMultiSelectionEnabled(false);
         int respuesta = fichero.showOpenDialog(null);
-        
+
         fichero.setDialogTitle("Selecciona una imagen");
-        
+
         if (respuesta == JFileChooser.APPROVE_OPTION) {
             JOptionPane.showMessageDialog(rootPane, "La foto " + fichero.getSelectedFile().getAbsolutePath() + " se ha seleccionado", "Correcto", JOptionPane.PLAIN_MESSAGE);
         }
@@ -737,14 +733,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFotoActionPerformed
 
     private void btnSmsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSmsActionPerformed
-
-        if(!listContactos.isSelectionEmpty()){
+        if (!listContactos.isSelectionEmpty()) {
             sms.setVisible(true);
-            int index= listContactos.getSelectedIndex();
-            Contacto persona=(Contacto)listaContactosObjeto.getElementAt(index);
+            int index = listContactos.getSelectedIndex();
+            Contacto persona = (Contacto) listaContactosObjeto.getElementAt(index);
             sms.txtFieldDestinatario.setText(persona.getNombre());
             sms.txtFieldDestinatario.setEditable(false);
-            
         }
     }//GEN-LAST:event_btnSmsActionPerformed
 
@@ -772,9 +766,21 @@ public class Principal extends javax.swing.JFrame {
         mensajesenviados.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!listContactos.isSelectionEmpty()) {
+            int index = listContactos.getSelectedIndex();
+            Contacto persona = (Contacto) listaContactosObjeto.getElementAt(index);
+            editar.txtFieldNombre.setText(persona.getNombre());
+            editar.txtFieldApellidos.setText(persona.getApellidos());
+            editar.txtFieldTfno.setText(persona.getMovil());
+            editar.txtFieldFijo.setText(persona.getFijo());
+            editar.txtFieldCorreo.setText(persona.getFijo());
+            editar.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+                /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -796,19 +802,12 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Principal().setVisible(true);
-
             }
         });
     }
-
-    
-  
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -872,11 +871,8 @@ public class Principal extends javax.swing.JFrame {
 
     String message;
     String messagewindow;
-
     String nombre;
-    
 
-    
     public void generaQuoteEasterEgg() {
         Random n = new Random();
         int aleatorio = n.nextInt(5);
