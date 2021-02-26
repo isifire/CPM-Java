@@ -33,6 +33,8 @@ public class NuevoMensaje extends javax.swing.JFrame {
         btnEnviarSMS = new javax.swing.JButton();
         btnSalirSMS = new javax.swing.JButton();
 
+        setTitle("Nuevo mensaje");
+
         lblDestinatario.setText("Destinatario:");
 
         lblAsunto.setText("Mensaje:");
@@ -99,7 +101,7 @@ public class NuevoMensaje extends javax.swing.JFrame {
     private void btnEnviarSMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarSMSActionPerformed
         String destinatario = txtFieldDestinatario.getText();
         String mensaje = txtAreaMensaje.getText();
-        mensajesms sms = new mensajesms(destinatario,mensaje);
+        MensajesSms sms = new MensajesSms(destinatario,mensaje);
         p.listaSMS.addElement(sms);
         JOptionPane.showMessageDialog(rootPane, "Mensaje enviado", "Correcto", JOptionPane.PLAIN_MESSAGE);
         this.setVisible(false);

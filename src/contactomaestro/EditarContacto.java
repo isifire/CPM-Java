@@ -42,6 +42,8 @@ public class EditarContacto extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
+        setTitle("Editar contacto");
+
         jLabel1.setText("*Correo electrónico:");
 
         lblFijo.setText("*Teléfono Fijo:");
@@ -64,7 +66,7 @@ public class EditarContacto extends javax.swing.JFrame {
 
         lblTfno.setText("*Teléfono Móvil:");
 
-        btnFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contactomaestro/contact.png"))); // NOI18N
+        btnFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contactomaestro/Contacto.png"))); // NOI18N
         btnFoto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFotoActionPerformed(evt);

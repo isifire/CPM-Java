@@ -31,6 +31,8 @@ public class VisualizarMensaje extends javax.swing.JFrame {
         txtAreaContenidoMensaje = new javax.swing.JTextArea();
         btnSalirContenidoMensaje = new javax.swing.JButton();
 
+        setTitle("Visualizar mensajes");
+
         lblEnviadoA.setText("Enviado a:");
 
         lblContenidoMensaje.setText("Contenido del mensaje:");

@@ -28,6 +28,8 @@ public class BandejaSalida extends javax.swing.JFrame {
         btnAbrirSMS = new javax.swing.JButton();
         btnBorrarSMS = new javax.swing.JButton();
 
+        setTitle("Bandeja de salida de SMS");
+
         listSMS.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { };
             public int getSize() { return strings.length; }
@@ -43,6 +45,11 @@ public class BandejaSalida extends javax.swing.JFrame {
         });
 
         btnBorrarSMS.setText("Borrar mensaje");
+        btnBorrarSMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarSMSActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,7 +81,7 @@ public class BandejaSalida extends javax.swing.JFrame {
         v.setVisible(true);
         if (!listSMS.isSelectionEmpty()) {
             int index = this.listSMS.getSelectedIndex();       //Jlist
-            mensajesms m = (mensajesms) p.listaSMS.getElementAt(index);    //default
+            MensajesSms m = (MensajesSms) p.listaSMS.getElementAt(index);    //default
             v.txtFieldEnviadoA.setText(m.getDestinatario());
             v.txtFieldEnviadoA.setEditable(false);
             v.txtAreaContenidoMensaje.setText(m.getMensaje());
@@ -82,6 +89,15 @@ public class BandejaSalida extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAbrirSMSActionPerformed
+
+    private void btnBorrarSMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarSMSActionPerformed
+            if (!listSMS.isSelectionEmpty()) {
+            int index = this.listSMS.getSelectedIndex();
+            MensajesSms m = (MensajesSms) p.listaSMS.getElementAt(index);
+            p.listaSMS.removeElement(m);   
+            }
+
+    }//GEN-LAST:event_btnBorrarSMSActionPerformed
 
     public static void main(String args[]) {
                                 /* Set the Nimbus look and feel */
