@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author isifi
+ * @author Isidro Benitez Zapico UO285039
  */
 public class NuevoMensaje extends javax.swing.JFrame {
 

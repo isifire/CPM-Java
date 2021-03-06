@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author isifi
+ * @author Isidro Benitez Zapico UO285039
  */
 public class ImportaciónVentana extends javax.swing.JFrame {
     

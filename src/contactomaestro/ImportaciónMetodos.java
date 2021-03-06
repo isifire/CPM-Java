@@ -3,7 +3,7 @@ package contactomaestro;
 
 /**
  *
- * @author isifi
+ * @author Isidro Benitez Zapico UO285039
  */
 abstract public class ImportaciónMetodos implements ImportaciónInterface {
     

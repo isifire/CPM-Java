@@ -10,12 +10,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
- * @author isifi
+ * @author Isidro Benitez Zapico UO285039
  */
+
 public class Principal extends javax.swing.JFrame {
 
+    
     boolean bloqueo = false;
     Llamando ventanallamar;
+    Iniciando carga = new Iniciando(this);
+    VentanaDibujo dibujo = new VentanaDibujo(this);
     EditarContacto editar = new EditarContacto(this);
     BandejaSalida mensajesenviados = new BandejaSalida(this);
     NuevoMensaje sms = new NuevoMensaje(this);
@@ -26,13 +30,15 @@ public class Principal extends javax.swing.JFrame {
     public DefaultListModel listaContactosBloqueados = new DefaultListModel();
     public DefaultListModel listaSMS = new DefaultListModel();
     
+
+
     public Principal() {
         initComponents();
-
         listContactos.setModel(listaContactosObjeto);
         listBloqueado.setModel(listaContactosBloqueados);
         mensajesenviados.listSMS.setModel(listaSMS);
         listFavoritos.setModel(listaFavoritosObjeto);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -67,6 +73,7 @@ public class Principal extends javax.swing.JFrame {
         lblmail = new javax.swing.JLabel();
         txtFieldCorreo = new javax.swing.JTextField();
         btnAnadirContacto = new javax.swing.JButton();
+        btnDibujar = new javax.swing.JButton();
         tabBandeja = new javax.swing.JPanel();
         rbMolestarPanel = new javax.swing.JRadioButton();
         rbSonidoPanel = new javax.swing.JRadioButton();
@@ -95,6 +102,7 @@ public class Principal extends javax.swing.JFrame {
         rbNoMolestar = new javax.swing.JRadioButtonMenuItem();
         rbSonido = new javax.swing.JRadioButtonMenuItem();
         menuAyuda = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ContactoMaestro");
@@ -213,7 +221,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lblApellidos.setText("Apellidos:");
+        lblApellidos.setText("*Apellidos:");
 
         txtFieldApellidos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -241,12 +249,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        lblmail.setText("Correo electrónico:");
+        lblmail.setText("*Correo electrónico:");
 
         btnAnadirContacto.setText("Añadir");
         btnAnadirContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirContactoActionPerformed(evt);
+            }
+        });
+
+        btnDibujar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/contactomaestro/pintar.png"))); // NOI18N
+        btnDibujar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDibujarActionPerformed(evt);
             }
         });
 
@@ -258,12 +273,14 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelAñadirContactosLayout.createSequentialGroup()
-                        .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelAñadirContactosLayout.createSequentialGroup()
-                                .addComponent(btnFoto)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAñadirContactosLayout.createSequentialGroup()
-                                .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDibujar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelAñadirContactosLayout.createSequentialGroup()
+                                .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelAñadirContactosLayout.createSequentialGroup()
                                         .addComponent(lblFijo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -271,7 +288,8 @@ public class Principal extends javax.swing.JFrame {
                                     .addGroup(panelAñadirContactosLayout.createSequentialGroup()
                                         .addComponent(lblTfno)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cBoxPrefijoMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cBoxPrefijoMovil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addGap(32, 32, 32)))
                         .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelAñadirContactosLayout.createSequentialGroup()
@@ -280,7 +298,7 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(lblApellidos))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                    .addComponent(txtFieldApellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
                                     .addComponent(txtFieldNombre)))
                             .addComponent(txtFieldTfno)
                             .addComponent(txtFieldFijo, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -292,15 +310,12 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panelAñadirContactosLayout.createSequentialGroup()
                 .addGap(154, 154, 154)
                 .addComponent(btnAnadirContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         panelAñadirContactosLayout.setVerticalGroup(
             panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAñadirContactosLayout.createSequentialGroup()
                 .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelAñadirContactosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelAñadirContactosLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -309,8 +324,14 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblApellidos)
-                            .addComponent(txtFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addComponent(txtFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelAñadirContactosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAñadirContactosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnDibujar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
                 .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFieldTfno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelAñadirContactosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -327,7 +348,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(txtFieldCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAnadirContacto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         cBoxPrefijoMovil.setSelectedItem(+34);
@@ -559,6 +580,11 @@ public class Principal extends javax.swing.JFrame {
         menuBar.add(menuAjustes);
 
         menuAyuda.setText("Ayuda");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setText("Actualizar versión");
+        menuAyuda.add(jMenuItem1);
+
         menuBar.add(menuAyuda);
 
         setJMenuBar(menuBar);
@@ -790,6 +816,10 @@ public class Principal extends javax.swing.JFrame {
         importar.setVisible(true);
     }//GEN-LAST:event_menuImportarContactosActionPerformed
 
+    private void btnDibujarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDibujarActionPerformed
+        dibujo.setVisible(true);
+    }//GEN-LAST:event_btnDibujarActionPerformed
+
     public static void main(String args[]) {
                 /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -815,7 +845,7 @@ public class Principal extends javax.swing.JFrame {
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new Principal().setVisible(false);
             }
         });
     }
@@ -826,6 +856,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btnBandejaEnviados;
     private javax.swing.JButton btnBloquear;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnDibujar;
     private javax.swing.JButton btnEliminarFav;
     private javax.swing.JButton btnFav;
     private javax.swing.JButton btnFoto;
@@ -836,6 +867,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cBoxPrefijoFijo;
     private javax.swing.JComboBox<String> cBoxPrefijoMovil;
     private javax.swing.JButton jButton1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;

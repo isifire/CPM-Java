@@ -7,14 +7,19 @@ import java.util.Random;
  *
  * @author Isidro Benitez Zapico UO285039
  */
-public class Llamando extends javax.swing.JFrame {
+public class Iniciando extends javax.swing.JFrame {
 
+    Principal p;
 
-    Principal vprincipal;
-
-    public Llamando() {
+    public Iniciando(){
         initComponents();
+    }
+
+    public Iniciando(Principal p) {
+        initComponents();
+        this.p = p;
         this.setVisible(true);
+        p.setVisible(false);
         java.util.Timer T = new java.util.Timer();
         for (int i = 1; i <= 11; i = i + 1) {
             java.util.TimerTask TTask = new java.util.TimerTask() {
@@ -30,24 +35,13 @@ public class Llamando extends javax.swing.JFrame {
             public void manejadorTimerLlamada() {
         int Valor = this.barLlamar.getValue();
         if (Valor == 100) { // Terminó
-            Random n = new Random();
-            int aleatorio = n.nextInt(2);
-            switch(aleatorio){
-                case 0:
-                    this.lblEstadoLlamada.setText("Ha colgado");
-                    break;
-                case 1:
-                    this.lblEstadoLlamada.setText("No responde");
-                    break;
-                case 2:
-                    this.lblEstadoLlamada.setText("Ha habido un error inesperado");
-                    break;
+            p.setVisible(true);
+            this.lblEstadoLlamada.setText(Valor + "%");
+            this.setVisible(false);
             }
-            this.btnColgar.setText("Cerrar");
-            Valor = 0;
-        } else {
+         else {
             this.barLlamar.setValue(Valor + 10);
-            this.lblEstadoLlamada.setText("Llamando" + ".");
+            this.lblEstadoLlamada.setText(Valor + "%");
         }
     }
 
@@ -58,19 +52,11 @@ public class Llamando extends javax.swing.JFrame {
 
         barLlamar = new javax.swing.JProgressBar();
         lblEstadoLlamada = new javax.swing.JLabel();
-        btnColgar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Llamada");
+        setTitle("Iniciando el programa...");
 
-        lblEstadoLlamada.setText("Llamando...");
-
-        btnColgar.setText("Colgar");
-        btnColgar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnColgarActionPerformed(evt);
-            }
-        });
+        lblEstadoLlamada.setText("0%");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,10 +70,7 @@ public class Llamando extends javax.swing.JFrame {
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblEstadoLlamada)
-                        .addGap(150, 150, 150))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnColgar)
-                        .addGap(151, 151, 151))))
+                        .addGap(176, 176, 176))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,17 +79,11 @@ public class Llamando extends javax.swing.JFrame {
                 .addComponent(lblEstadoLlamada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(barLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnColgar)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnColgarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColgarActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnColgarActionPerformed
 
     public static void main(String args[]) {
                         /* Set the Nimbus look and feel */
@@ -122,20 +99,20 @@ public class Llamando extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Llamando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Iniciando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Llamando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Iniciando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Llamando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Iniciando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Llamando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Iniciando.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JProgressBar barLlamar;
-    private javax.swing.JButton btnColgar;
     javax.swing.JLabel lblEstadoLlamada;
     // End of variables declaration//GEN-END:variables
 }

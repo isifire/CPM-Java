@@ -3,7 +3,7 @@ package contactomaestro;
 
 /**
  *
- * @author isifi
+ * @author Isidro Benitez Zapico UO285039
  */
 public interface ImportaciónInterface {
     void Run();
