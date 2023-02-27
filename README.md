@@ -1,2 +1,2 @@
-# ContactoMaestro CPM
- Proyecto para la asignatura de Comunicación Persona Máquina
+# Comunicación Persona Maquina - Java
+ Proyecto de Java para la asignatura de Comunicación Persona Máquina
